@@ -1,7 +1,7 @@
 $(document).ready(readyNow);
 
 let employeeInfoTable = []
-
+let value = 0
 
 function readyNow() {
     $('body').on('click', '.Delete', deleteEmployee);
@@ -63,6 +63,7 @@ function addNewEmployee() {
 function addEmployee(){
     addNewEmployee()
     calculateMonthlySalary()
+    Red()
 }
 
 
@@ -79,12 +80,8 @@ let employeeMonthlySalaryTemp = 0
   console.log(employeeMonthlySalary)
 
   
- let value = employeeMonthlySalary;
+ let value = ('$' + employeeMonthlySalary);
  $('#totalMonthlySalary').text(`Monthly Total: ${value}`)
-
- if(value >= 20000){
-    //TURN RED
- }
  render()
 }
 
@@ -94,8 +91,15 @@ let employeeMonthlySalaryTemp = 0
 
 
 //CHANGE TOTAL NUMBER COUNT TO RED WHEN OVER 20K PER MONTH!!//
-
-
+function Red(){
+if (value >= 20000){
+    $('#totalMonthlySalary').addClass('Over20k')
+}
+else{
+    $('#totalMonthlySalary').removeClass('Over20k')
+}
+console.log(`testing red ${value}`)
+}
 
 
 //DELETE EMPLOYEE BASE//

@@ -1,6 +1,7 @@
 table {
   font-family: arial, sans-serif;
   width: 100%;
+  border-collapse: collapse;
 }
 
 td, th {
@@ -9,4 +10,8 @@ td, th {
   margin: 0;
   height: 20px;
   width: 50px;
+}
+
+.Over20k{
+ color: Red;
 }
