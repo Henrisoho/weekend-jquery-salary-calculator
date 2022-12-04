@@ -111,7 +111,7 @@ console.log(`testing red ${value}`)
 function deleteEmployee(){
 let deleteButtonClick = $(this);
 let IDSpan = deleteButtonClick.parent().parent();
-let IDInfo = IDSpan.text();
+let IDInfo = IDSpan;
  console.log(IDInfo)
 
 let Stillemployed = [];
@@ -121,6 +121,8 @@ for(let theEmployees of employeeInfoTable){
     Stillemployed.push(theEmployees);
   }
 employeeInfoTable = Stillemployed;
+console.log(theEmployees)
+console.log(Stillemployed)
 render();
 }  
 }
