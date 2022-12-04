@@ -16,7 +16,7 @@ function render() {
       <tr>
         <td>${employeeInfoTable[i].First}</td>
         <td>${employeeInfoTable[i].Last}</td>
-        <td>${employeeInfoTable[i].iD}</td>
+        <td><span id="spanID">${employeeInfoTable[i].iD}</span></td>
         <td>${employeeInfoTable[i].TitleList}</td>
         <td>${employeeInfoTable[i].SalaryList}</td>
         <td>
@@ -26,7 +26,6 @@ function render() {
       `)
 }
 }
-
 
 
 //ADD EMPLOYEE TO ARRAY!!//
@@ -101,28 +100,28 @@ console.log(`testing red ${value}`)
 
 
 //DELETE EMPLOYEE BASE//
-// function deleteEmployee(){
-//     console.log('hey')
-//     $(this).parent().parent().remove()
-// }
-
+//   function deleteEmployee(){
+//       console.log('hey')
+//       $(this).parent().parent().remove()
+//  }
 
 
 function deleteEmployee(){
-let deleteButtonClick = $(this);
-let IDSpan = deleteButtonClick.parent().parent();
+let deleteButtonClick = $(this).parent().siblings();
+let IDSpan = deleteButtonClick.children().text();
 let IDInfo = IDSpan;
  console.log(IDInfo)
 
 let Stillemployed = [];
 
 for(let theEmployees of employeeInfoTable){
-  if(IDInfo !== theEmployees){
+  if(IDInfo !== theEmployees.iD){
     Stillemployed.push(theEmployees);
   }
 employeeInfoTable = Stillemployed;
-console.log(theEmployees)
+console.log(theEmployees.iD)
 console.log(Stillemployed)
+console.log(IDInfo)
 render();
 }  
 }
