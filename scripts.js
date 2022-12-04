@@ -1,7 +1,7 @@
 $(document).ready(readyNow);
 
 let employeeInfoTable = []
-let totalSalary = 0
+let employeeMonthlySalary = 0
 
 function readyNow() {
     $('body').on('click', '.Delete', deleteEmployee);
@@ -62,17 +62,22 @@ function addNewEmployee() {
 //ADD EMPLOYEE TO TABLE!!//
 function addEmployee(){
     addNewEmployee()
-    calculateTotalSalary()
+    calculateMonthlySalary()
+    calculateCombinedSalaries()
 }
 
 
 //CALCULATE TOTAL SALARYS//
-function calculateTotalSalary(){
+function calculateMonthlySalary(){
  for(let i = 0; i < employeeInfoTable.length; i++){
-    totalSalary = (employeeInfoTable[i].SalaryList/12)
+    employeeMonthlySalary = (employeeInfoTable[i].SalaryList/12)
  }
- console.log(totalSalary)
- render()
+  return employeeMonthlySalary
+}
+
+function calculateCombinedSalaries(){
+    console.log(employeeMonthlySalary)
+
 }
 
 //SUBTRACT FROM SALARY WHEN DELETED//
