@@ -1,17 +1,24 @@
-table {
-  font-family: arial, sans-serif;
-  width: 100%;
-  border-collapse: collapse;
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
 }
 
-td, th {
-  border: 2px solid #000000;
-  text-align: left;
-  margin: 0;
-  height: 20px;
-  width: 50px;
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+}
+
+footer{
+    text-align: right;
+    padding-right: 300px;
+    bottom: 0%;
+    position: fixed;
 }
 
 .Over20k{
- color: Red;
+    color: red;
 }
