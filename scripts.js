@@ -1,7 +1,7 @@
 $(document).ready(readyNow);
 
 let employeeInfoTable = []
-let employeeMonthlySalary = 0
+
 
 function readyNow() {
     $('body').on('click', '.Delete', deleteEmployee);
@@ -17,7 +17,7 @@ function render() {
       <tr>
         <td>${employeeInfoTable[i].First}</td>
         <td>${employeeInfoTable[i].Last}</td>
-        <span class= "IDSpan"><td>${employeeInfoTable[i].ID}</td></span>
+        <td>${employeeInfoTable[i].iD}</td>
         <td>${employeeInfoTable[i].TitleList}</td>
         <td>${employeeInfoTable[i].SalaryList}</td>
         <td>
@@ -41,7 +41,7 @@ function addNewEmployee() {
   let employeeInfo = {
     First: firstName,
     Last: lastName,
-    ID: IDNumber,
+    iD: IDNumber,
     TitleList: title,
     SalaryList: salary
   }
@@ -63,21 +63,29 @@ function addNewEmployee() {
 function addEmployee(){
     addNewEmployee()
     calculateMonthlySalary()
-    calculateCombinedSalaries()
 }
 
 
 //CALCULATE TOTAL SALARYS//
 function calculateMonthlySalary(){
+let employeeMonthlySalaryTemp = 0
  for(let i = 0; i < employeeInfoTable.length; i++){
-    employeeMonthlySalary = (employeeInfoTable[i].SalaryList/12)
+    employeeMonthlySalaryTemp += Number(employeeInfoTable[i].SalaryList)
  }
-  return employeeMonthlySalary
-}
+  console.log(employeeMonthlySalaryTemp)
+  
+  let employeeMonthlySalary = Math.round(employeeMonthlySalaryTemp/12)
 
-function calculateCombinedSalaries(){
-    console.log(employeeMonthlySalary)
+  console.log(employeeMonthlySalary)
 
+  
+ let value = employeeMonthlySalary;
+ $('#totalMonthlySalary').text(`Monthly Total: ${value}`)
+
+ if(value >= 20000){
+    //TURN RED
+ }
+ render()
 }
 
 //SUBTRACT FROM SALARY WHEN DELETED//
@@ -85,28 +93,32 @@ function calculateCombinedSalaries(){
 
 
 
-//CHANGE TOTAL NUMBER COUNT TO RED WHEN OVER 20K PER MONTH//
+//CHANGE TOTAL NUMBER COUNT TO RED WHEN OVER 20K PER MONTH!!//
 
 
 
 
 //DELETE EMPLOYEE BASE//
-function deleteEmployee(){
-    console.log('hey')
-    $(this).parent().parent().remove()
-}
-//   let deleteButtonClick = $(this);
-//   let IDSpan = deleteButtonClick.parent();
-//   let IDInfo = IDSpan.val();
-//  console.log(IDInfo)
-
-// let Stillemployed = [];
-
-// for(let theEmployees of employeeInfoTable){
-//   if(IDInfo !== theEmployees.ID){
-//     Stillemployed.push(theEmployees);
-//   }
-// employeeInfoTable = Stillemployed;
-// render();
-// }  
+// function deleteEmployee(){
+//     console.log('hey')
+//     $(this).parent().parent().remove()
 // }
+
+
+
+function deleteEmployee(){
+let deleteButtonClick = $(this);
+let IDSpan = deleteButtonClick.parent().parent();
+let IDInfo = IDSpan.text();
+ console.log(IDInfo)
+
+let Stillemployed = [];
+
+for(let theEmployees of employeeInfoTable){
+  if(IDInfo !== theEmployees){
+    Stillemployed.push(theEmployees);
+  }
+employeeInfoTable = Stillemployed;
+render();
+}  
+}
